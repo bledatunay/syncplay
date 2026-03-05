@@ -121,6 +121,21 @@ class PotPlayerPlayer(BasePlayer):
         # Pause/play state stabilisation
         self._lastPaused = None
         self._pauseCmdUntil = 0  # during this window, trust status codes over time drift
+
+        # Auto-ready support: MPC effectively auto-readies the local user when they
+        # press play. PotPlayer lacks a clean event signal, so we infer a local
+        # user-initiated unpause when the player transitions from paused->playing
+        # outside of Syncplay-issued command windows, and we mark the user ready.
+        self._autoReadyCooldownUntil = 0.0
+        self._autoReadyPauseCooldownUntil = 0.0
+        self._lastLocalUnpauseAt = None
+
+        # Pause snap-back correction: PotPlayer can snap the reported timestamp
+        # backwards on pause due to keyframe alignment. We capture an anchor at
+        # the pause edge and, once paused, re-assert the anchor time once.
+        self._pauseCorrectPending = False
+        self._pauseCorrectUntil = 0.0
+        self._pauseCorrectAnchorMs = None
         self._playingEvidence = 0
 
         # When we explicitly request pause/unpause, PotPlayer may briefly report
@@ -152,6 +167,17 @@ class PotPlayerPlayer(BasePlayer):
         # PotPlayer time can be temporarily inconsistent without being treated as
         # a user-driven seek by Syncplay.
         self._seekCmdUntil = 0
+        # Pending-seek smoothing:
+        # PotPlayer may take a moment to apply large forward seeks and will keep
+        # reporting the old timestamp briefly. Syncplay may interpret the resulting
+        # large time difference as a desync and 'rewind' other clients back.
+        # To mimic players with explicit seek notifications (like MPC), we
+        # optimistically report the target timestamp for a short settle window
+        # after a Syncplay-issued seek, then stop once PotPlayer settles near it.
+        self._pendingSeekTargetMs = None
+        self._pendingSeekUntil = 0.0
+        self._pendingSeekStableHits = 0
+        self._pendingSeekToleranceMs = 1200
 
     # ------------------------
     # Window helpers
@@ -239,7 +265,53 @@ class PotPlayerPlayer(BasePlayer):
             # Unknown: fall back to last known state
             paused = True if self._lastPaused is None else self._lastPaused
 
-        # Freeze position briefly on play->pause transition to avoid keyframe
+        
+        # --- Auto-ready (MPC-like one-click play) ---
+        # If the local user unpauses via the player UI while they are not ready,
+        # Syncplay will mark them as ready but may momentarily force a pause, which
+        # leads to the "unpause again to unpause" message and a second click.
+        # MPC avoids this by providing a clean unpause intent signal. For PotPlayer
+        # we infer intent: a paused->playing transition outside of Syncplay's own
+        # command windows. When detected, mark the local user as ready immediately.
+        if self._lastPaused is True and paused is False and now > self._pauseCmdUntil and now > self._autoReadyCooldownUntil:
+            try:
+                username = self._client.getUsername()
+                # Only set if currently unready/unknown
+                is_ready = self._client.userlist.isReady(username)
+                if is_ready is False or is_ready is None:
+                    # Call through reactor for thread-safety consistency with other adapters.
+                    self.reactor.callFromThread(self._client.setReady, username, True, True, None)
+                self._autoReadyCooldownUntil = now + 0.75
+                self._lastLocalUnpauseAt = now
+            except Exception:
+                # Non-fatal: continue without auto-ready.
+                pass
+
+
+
+        # --- Keep local user ready on user-initiated pause (PotPlayer UX parity) ---
+        # Some Syncplay setups mark the local user as unready when they pause.
+        # Syncplay toggles readiness inside Client.updatePlayerStatus() *after* we report a pause.
+        # If we set ready immediately here, it may be overwritten by _toggleReady().
+        # Therefore, we schedule a tiny delayed correction (reactor.callLater) so it runs
+        # right after the core logic, keeping default readiness behavior intact while
+        # avoiding the PotPlayer-specific 'double play click' UX.
+        if self._lastPaused is False and paused is True and now > self._pauseCmdUntil and now > self._autoReadyPauseCooldownUntil:
+            def _pp_force_ready_after_pause():
+                try:
+                    username = self._client.getUsername()
+                    is_ready = self._client.userlist.isReady(username)
+                    if is_ready is False or is_ready is None:
+                        self._client.setReady(username, True, True, None)
+                except Exception:
+                    pass
+            try:
+                self.reactor.callLater(0.05, _pp_force_ready_after_pause)
+                self._autoReadyPauseCooldownUntil = now + 0.75
+            except Exception:
+                pass
+
+# Freeze position briefly on play->pause transition to avoid keyframe
         # snap-back being interpreted as a seek.
         if self._lastPaused is False and paused is True:
             if self._smoothPosMs is not None:
@@ -247,6 +319,9 @@ class PotPlayerPlayer(BasePlayer):
                 self._freezePosUntil = now + 1.25
                 self._pauseAnchorMs = int(self._smoothPosMs)
                 self._pauseAnchorUntil = now + 1.50
+                self._pauseCorrectPending = True
+                self._pauseCorrectUntil = now + 1.50
+                self._pauseCorrectAnchorMs = int(self._smoothPosMs)
 
         # During a short window after we explicitly requested pause/unpause,
         # force the requested state to prevent transient oscillation.
@@ -269,7 +344,18 @@ class PotPlayerPlayer(BasePlayer):
             if pos_ms < self._pauseAnchorMs:
                 pos_ms = self._pauseAnchorMs
 
-        # If we're outside the command stabilisation window, allow a conservative inference:
+        
+        # Re-assert pause anchor once to counter PotPlayer keyframe snap-back.
+        if paused and self._pauseCorrectPending and now <= self._pauseCorrectUntil and self._pauseCorrectAnchorMs is not None:
+            try:
+                if pos_ms < self._pauseCorrectAnchorMs:
+                    self._send(self._WM_USER, self._POT_SET_CURRENT_TIME, int(self._pauseCorrectAnchorMs))
+                    pos_ms = self._pauseCorrectAnchorMs
+            finally:
+                # Only attempt once.
+                self._pauseCorrectPending = False
+
+# If we're outside the command stabilisation window, allow a conservative inference:
         # Only treat "paused" as playing if we have sustained evidence over multiple polls.
         if now > self._pauseCmdUntil:
             if paused and self._lastPosMs is not None and self._lastPosCheck is not None:
@@ -283,6 +369,26 @@ class PotPlayerPlayer(BasePlayer):
                     paused = False
             else:
                 self._playingEvidence = 0
+
+        # --- Pending seek smoothing ---
+        # After a Syncplay-issued seek (especially a large forward seek), PotPlayer can
+        # keep reporting the old timestamp briefly. That can trigger Syncplay's
+        # "rewind due to time difference" correction on other clients.
+        # While pending, optimistically report the target until PotPlayer settles near it.
+        if self._pendingSeekTargetMs is not None:
+            if now <= self._pendingSeekUntil:
+                target = int(self._pendingSeekTargetMs)
+                if abs(int(pos_ms) - target) <= self._pendingSeekToleranceMs:
+                    self._pendingSeekStableHits += 1
+                    if self._pendingSeekStableHits >= 2:
+                        self._pendingSeekTargetMs = None
+                        self._pendingSeekStableHits = 0
+                else:
+                    pos_ms = target
+                    self._pendingSeekStableHits = 0
+            else:
+                self._pendingSeekTargetMs = None
+                self._pendingSeekStableHits = 0
 
         # --- Position smoothing ---
         # Build a monotonic (when playing) position to avoid transient backward snaps.
@@ -540,11 +646,21 @@ class PotPlayerPlayer(BasePlayer):
             # Allow an actual jump (including backwards) to be observed for a short
             # period so Syncplay can propagate a real user seek.
             now = time.time()
-            self._allowJumpUntil = now + 1.0
-            self._seekCmdUntil = now + 1.25
+            # Mark a short window where we allow discontinuities without
+            # interpreting transient PotPlayer reads as user seeks.
+            self._allowJumpUntil = now + 1.5
+            self._seekCmdUntil = now + 1.75
             target_ms = int(float(value) * 1000)
             target_ms = max(0, target_ms)
-            self._smoothPosMs = target_ms
+            # Pending seek smoothing for large forward jumps:
+            prev_ms = self._smoothPosMs if self._smoothPosMs is not None else target_ms
+            jump_ms = abs(int(target_ms) - int(prev_ms))
+            settle_s = min(6.0, max(2.0, (jump_ms / 1000.0) * 0.08))
+            self._pendingSeekTargetMs = int(target_ms)
+            self._pendingSeekUntil = now + settle_s
+            self._pendingSeekStableHits = 0
+            # Optimistically update our smooth position immediately.
+            self._smoothPosMs = int(target_ms)
             self._smoothPosAt = now
             self._send(self._WM_USER, self._POT_SET_CURRENT_TIME, target_ms)
         except Exception:
