@@ -134,7 +134,7 @@ de = {
     "mpv-version-error": "Syncplay ist nicht kompatibel mit dieser Version von mpv.  Bitte benutze eine andere Version (z.B. Git HEAD).",
     "mpv-failed-advice": "Der Grund dass mpv nicht gestartet werden kann, kann an der Verwendung nicht unterstützter Befehlszeilenargumente oder einer nicht unterstützten Version von mpv liegen.",
     "player-file-open-error": "Fehler beim Öffnen der Datei durch den Player",
-    "player-path-error": "Ungültiger Player-Pfad. Unterstützte Player sind: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 und IINA",
+    "player-path-error": "Ungültiger Player-Pfad. Unterstützte Player sind: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 und IINA",
     "hostname-empty-error": "Hostname darf nicht leer sein",
     "empty-error": "{} darf nicht leer sein",  # Configuration
     "media-player-error": "Player-Fehler: \"{}\"",  # Error line
@@ -145,7 +145,7 @@ de = {
 
     "unable-to-start-client-error": "Client kann nicht gestartet werden",
 
-    "player-path-config-error": "Player-Pfad ist nicht ordnungsgemäß gesetzt. Unterstützte Player sind: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 und IINA",
+    "player-path-config-error": "Player-Pfad ist nicht ordnungsgemäß gesetzt. Unterstützte Player sind: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 und IINA",
     "no-file-path-config-error": "Es muss eine Datei ausgewählt werden, bevor der Player gestartet wird.",
     "no-hostname-config-error": "Hostname darf nicht leer sein",
     "invalid-port-config-error": "Port muss gültig sein",

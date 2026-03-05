@@ -137,7 +137,7 @@ eo = {
     "mpv-failed-advice": "The reason mpv cannot start may be due to the use of unsupported command line arguments or an unsupported version of mpv.",
     "mpv-failed-advice": "Eble mpv ne povas starti pro nesubtenataj konzolaj parametroj, aŭ nesubtenata versio de mpv.", # FARU: «konzolaj» – ĉu bona traduko de «command-line»?
     "player-file-open-error": "Ludilo malsukcesis malfermi dosieron",
-    "player-path-error": "Vojo al ludilo ne estas ĝuste agordita. Nun subtenataj ludiloj estas: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2, kaj IINA",
+    "player-path-error": "Vojo al ludilo ne estas ĝuste agordita. Nun subtenataj ludiloj estas: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2, kaj IINA",
     "hostname-empty-error": "Nomo de gastiga komputilo ne povas esti malplena",
     "empty-error": "{} ne povas esti malplena",  # Configuration
     "media-player-error": "Eraro de vidaŭdaĵa ludilo: \"{}\"",  # Error line
@@ -148,7 +148,7 @@ eo = {
 
     "unable-to-start-client-error": "Ne povas ruli klienton",
 
-    "player-path-config-error": "Vojo al ludilo ne estas ĝuste agordita. Nun subtenataj ludiloj estas: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2, kaj IINA",
+    "player-path-config-error": "Vojo al ludilo ne estas ĝuste agordita. Nun subtenataj ludiloj estas: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2, kaj IINA",
     "no-file-path-config-error": "Dosiero devas esti elektita, antaŭ ol vi rulos vian ludilon", # FARU: eble «komencos» aŭ «ludigos»?
     "no-hostname-config-error": "Nomo de gastiga komputilo ne povas esti malplena",
     "invalid-port-config-error": "Pordo devas esti valida",

@@ -134,7 +134,7 @@ pt_BR = {
     "mpv-version-error": "O Syncplay não é compatível com esta versão do mpv. Por favor, use uma versão diferente do mpv (por exemplo, Git HEAD).",
     "mpv-failed-advice": "O motivo pelo qual o mpv não pode ser iniciado pode ser devido ao uso de argumentos da linha de comando não suportados ou a uma versão não suportada do mpv.",
     "player-file-open-error": "O reprodutor falhou ao abrir o arquivo",
-    "player-path-error": "O caminho até o arquivo executável do reprodutor não está configurado corretamente. Os reprodutores suportados são: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 e IINA",
+    "player-path-error": "O caminho até o arquivo executável do reprodutor não está configurado corretamente. Os reprodutores suportados são: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 e IINA",
     "hostname-empty-error": "O endereço do servidor não pode estar vazio",
     "empty-error": "{} não pode estar vazio",  # Configuration
     "media-player-error": "Erro do reprodutor de mídia: \"{}\"",  # Error line
@@ -145,7 +145,7 @@ pt_BR = {
 
     "unable-to-start-client-error": "Não foi possível iniciar o cliente",
 
-    "player-path-config-error": "O caminho até o arquivo executável do reprodutor não está configurado corretamente. Os reprodutores suportados são: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 e IINA.",
+    "player-path-config-error": "O caminho até o arquivo executável do reprodutor não está configurado corretamente. Os reprodutores suportados são: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 e IINA.",
     "no-file-path-config-error": "O arquivo deve ser selecionado antes de iniciar seu reprodutor",
     "no-hostname-config-error": "O endereço do servidor não pode estar vazio",
     "invalid-port-config-error": "A porta deve ser válida",

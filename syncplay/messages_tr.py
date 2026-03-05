@@ -134,7 +134,7 @@ tr = {
     "mpv-version-error": "Syncplay, mpv'nin bu sürümüyle uyumlu değil. Lütfen farklı bir mpv sürümü kullanın (ör. Git HEAD).",
     "mpv-failed-advice": "Mpv'nin başlatılamamasının nedeni, desteklenmeyen komut satırı bağımsız değişkenlerinin veya mpv'nin desteklenmeyen bir sürümünün kullanılması olabilir.",
     "player-file-open-error": "Oynatıcı dosyayı açamadı",
-    "player-path-error": "Oynatıcı yolu doğru ayarlanmadı. Desteklenen oynatıcılar şunlardır: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 ve IINA",
+    "player-path-error": "Oynatıcı yolu doğru ayarlanmadı. Desteklenen oynatıcılar şunlardır: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 ve IINA",
     "hostname-empty-error": "Ana bilgisayar adı boş olamaz",
     "empty-error": "{} boş olamaz",  # Configuration
     "media-player-error": "Medaya oynatıcısı hatası: \"{}\"",  # Error line
@@ -145,7 +145,7 @@ tr = {
 
     "unable-to-start-client-error": "İstemci başlatılamıyor",
 
-    "player-path-config-error": "Oynatıcı yolu doğru ayarlanmadı. Desteklenen oyuncular şunlardır: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 ve IINA.",
+    "player-path-config-error": "Oynatıcı yolu doğru ayarlanmadı. Desteklenen oyuncular şunlardır: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 ve IINA.",
     "no-file-path-config-error": "Oynatıcınız başlatılmadan önce dosya seçilmelidir",
     "no-hostname-config-error": "Ana bilgisayar adı boş olamaz",
     "invalid-port-config-error": "Bağlantı noktası geçerli olmalıdır",

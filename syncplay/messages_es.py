@@ -134,7 +134,7 @@ es = {
     "mpv-version-error": "Syncplay no es compatible con esta versión de mpv. Por favor utiliza una versión diferente de mpv (p.ej. Git HEAD).",
     "mpv-failed-advice": "The reason mpv cannot start may be due to the use of unsupported command line arguments or an unsupported version of mpv.", # TODO: Translate
     "player-file-open-error": "El reproductor falló al abrir el archivo",
-    "player-path-error": "La ruta del reproductor no está definida correctamente. Los reproductores soportados son: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2, y IINA",
+    "player-path-error": "La ruta del reproductor no está definida correctamente. Los reproductores soportados son: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2, y IINA",
     "hostname-empty-error": "El nombre del host no puede ser vacío",
     "empty-error": "{} no puede ser vacío",  # Configuration
     "media-player-error": "Error del reproductor multimedia: \"{}\"",  # Error line
@@ -145,7 +145,7 @@ es = {
 
     "unable-to-start-client-error": "No se logró iniciar el cliente",
 
-    "player-path-config-error": "La ruta del reproductor no está definida correctamente. Los reproductores soportados son: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 y IINA.",
+    "player-path-config-error": "La ruta del reproductor no está definida correctamente. Los reproductores soportados son: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 y IINA.",
     "no-file-path-config-error": "El archivo debe ser seleccionado antes de iniciar el reproductor",
     "no-hostname-config-error": "El nombre del host no puede ser vacío",
     "invalid-port-config-error": "El puerto debe ser válido",

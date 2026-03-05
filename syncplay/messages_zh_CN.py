@@ -134,7 +134,7 @@ zh_CN = {
     "mpv-version-error": "Syncplay与此版本的mpv不兼容。请使用其他版本的mpv（例如：Git HEAD）。",
     "mpv-failed-advice": "mpv不能启动的原因可能是由于使用了不支持的命令行参数或不支持的mpv版本。",
     "player-file-open-error": "播放器打开文件失败",
-    "player-path-error": "播放器路径设置不正确。支持的播放器有：mpv、mpv.net、VLC、MPC-HC、MPC-BE、mplayer2和IINA。",
+    "player-path-error": "播放器路径设置不正确。支持的播放器有：mpv、mpv.net、VLC、MPC-HC、MPC-BE、PotPlayer、mplayer2和IINA。",
     "hostname-empty-error": "主机名不能是空的",
     "empty-error": "{}不能是空的",  # Configuration
     "media-player-error": "媒体播放器错误：\"{}\"",  # Error line
@@ -145,7 +145,7 @@ zh_CN = {
 
     "unable-to-start-client-error": "无法启动客户端",
 
-    "player-path-config-error": "播放器路径设置不正确。支持的播放器有：mpv、mpv.net、VLC、MPC-HC、MPC-BE、mplayer2和IINA。",
+    "player-path-config-error": "播放器路径设置不正确。支持的播放器有：mpv、mpv.net、VLC、MPC-HC、MPC-BE、PotPlayer、mplayer2和IINA。",
     "no-file-path-config-error": "在启动播放器之前，必须选择要播放的文件",
     "no-hostname-config-error": "主机名不能是空的",
     "invalid-port-config-error": "端口无效",

@@ -134,7 +134,7 @@ ru = {
     "mpv-version-error": "Syncplay несовместим с данной версией mpv. Пожалуйста, используйте другую версию mpv (лучше свежайшую).",
     "mpv-failed-advice": "Возможно, mpv не может запуститься из-за неподдерживаемых параметров командной строки или неподдерживаемой версии mpv.",
     "player-file-open-error": "Проигрыватель не может открыть файл.",
-    "player-path-error": "Путь к проигрывателю задан неверно. Поддерживаемые проигрыватели: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 и IINA.",
+    "player-path-error": "Путь к проигрывателю задан неверно. Поддерживаемые проигрыватели: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 и IINA.",
     "hostname-empty-error": "Имя пользователя не может быть пустым.",
     "empty-error": "{} не может быть пустым.",  # Configuration
     "media-player-error": "Ошибка проигрывателя: \"{}\"",  # Error line
@@ -145,7 +145,7 @@ ru = {
 
     "unable-to-start-client-error": "Невозможно запустить клиент",
 
-    "player-path-config-error": "Путь к проигрывателю установлен неверно. Поддерживаемые проигрыватели: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 и IINA.",
+    "player-path-config-error": "Путь к проигрывателю установлен неверно. Поддерживаемые проигрыватели: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 и IINA.",
     "no-file-path-config-error": "Файл должен быть указан до включения проигрывателя",
     "no-hostname-config-error": "Адрес сервера не может быть пустым",
     "invalid-port-config-error": "Неверный номер порта",

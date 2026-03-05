@@ -134,7 +134,7 @@ fr = {
     "mpv-version-error": "Syncplay n'est pas compatible avec cette version de mpv. Veuillez utiliser une version différente de mpv (par exemple Git HEAD).",
     "mpv-failed-advice": "La raison pour laquelle mpv ne peut pas démarrer peut être due à l'utilisation d'arguments de ligne de commande non pris en charge ou à une version non prise en charge de mpv.",
     "player-file-open-error": "Le lecteur n'a pas réussi à ouvrir le fichier",
-    "player-path-error": "Le chemin du lecteur n'est pas défini correctement. Les lecteurs pris en charge sont : mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 et IINA",
+    "player-path-error": "Le chemin du lecteur n'est pas défini correctement. Les lecteurs pris en charge sont : mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 et IINA",
     "hostname-empty-error": "Le nom d'hôte ne peut pas être vide",
     "empty-error": "{} ne peut pas être vide",  # Configuration
     "media-player-error": "Media player error: \"{}\"",  # Error line
@@ -145,7 +145,7 @@ fr = {
 
     "unable-to-start-client-error": "Impossible de démarrer le client",
 
-    "player-path-config-error": "Le chemin du lecteur n'est pas défini correctement. Les lecteurs pris en charge sont : mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 et IINA.",
+    "player-path-config-error": "Le chemin du lecteur n'est pas défini correctement. Les lecteurs pris en charge sont : mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 et IINA.",
     "no-file-path-config-error": "Le fichier doit être sélectionné avant de démarrer votre lecteur",
     "no-hostname-config-error": "Le nom d'hôte ne peut pas être vide",
     "invalid-port-config-error": "Le port doit être valide",

@@ -134,7 +134,7 @@ ko = {
     "mpv-version-error": "Syncplay는 이 버전의 mpv와 호환되지 않습니다. 다른 버전의 mpv를 사용하세요 (e.g. Git HEAD).",
     "mpv-failed-advice": "mpv를 시작할 수 없는 이유는 지원되지 않는 명령줄 인수를 사용하거나 지원되지 않는 mpv 버전 때문일 수 있습니다.",
     "player-file-open-error": "플레이어가 파일을 열지 못했습니다",
-    "player-path-error": "플레이어 경로가 제대로 설정되지 않았습니다. 지원되는 플레이어는 mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 및 IINA입니다.",
+    "player-path-error": "플레이어 경로가 제대로 설정되지 않았습니다. 지원되는 플레이어는 mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 및 IINA입니다.",
     "hostname-empty-error": "호스트이름은 비워둘 수 없습니다",
     "empty-error": "{}은(는) 비워 둘 수 없습니다",  # Configuration
     "media-player-error": "미디어 플레이어 오류: \"{}\"",  # Error line
@@ -145,7 +145,7 @@ ko = {
 
     "unable-to-start-client-error": "클라이언트를 시작할 수 없습니다",
 
-    "player-path-config-error": "플레이어 경로가 제대로 설정되지 않았습니다. 지원되는 플레이어는 mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2 및 IINA입니다.",
+    "player-path-config-error": "플레이어 경로가 제대로 설정되지 않았습니다. 지원되는 플레이어는 mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2 및 IINA입니다.",
     "no-file-path-config-error": "플레이어를 시작하기 전에 파일을 선택해야 합니다",
     "no-hostname-config-error": "호스트이름은 비워둘 수 없습니다",
     "invalid-port-config-error": "포트가 유효해야 합니다",

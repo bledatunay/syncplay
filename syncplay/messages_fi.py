@@ -134,7 +134,7 @@ fi = {
      "mpv-version-error": "Syncplay ei ole yhteensopiva tämän mpv-soittimen version kanssa. Käytäthän mpv:n uudempaa julkaisua jotta saat toiston käyntiin(esim. Git HEAD).",
      "mpv-failed-advice": "Syy miksi mpv ei voi käynnistyä voi johtua tukemattomista komentorivin vivuista tai sitten mpv:n versiosta jota ei tueta.",
      "player-file-open-error": "Toistin ei saanut tiedostoa auki",
-     "player-path-error": "Toistimen tiedostopolku ei ole oikein asetettu. Tuettuja toisto-ohjelmia ovat: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2, ja IINA",
+     "player-path-error": "Toistimen tiedostopolku ei ole oikein asetettu. Tuettuja toisto-ohjelmia ovat: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2, ja IINA",
      "hostname-empty-error": "Palvelinnimi ei voi olla tyhjä",
      "empty-error": "{} ei voi jättää tyhjäksi",  # Configuration
      "media-player-error": "Mediasoitin kohtasi virheen: \"{}\"",  # Error line
@@ -145,7 +145,7 @@ fi = {
 
      "unable-to-start-client-error": "Asiakasohjelmaa ei saatu käynnistettyä",
 
-     "player-path-config-error": "Toistimen sijaintipolku ei ole asetettu oikein. Tuetut toisto-ohjelmat ovat: mpv, mpv.net, VLC, MPC-HC, MPC-BE, mplayer2, ja IINA.",
+     "player-path-config-error": "Toistimen sijaintipolku ei ole asetettu oikein. Tuetut toisto-ohjelmat ovat: mpv, mpv.net, VLC, MPC-HC, MPC-BE, PotPlayer, mplayer2, ja IINA.",
      "no-file-path-config-error": "Tiedosto pitää valita ennen soittimesi käynnistämistä",
      "no-hostname-config-error": "Palvellinnimi ei voi olla tyhjä",
      "invalid-port-config-error": "Portti tulee olla kelvollinen",
